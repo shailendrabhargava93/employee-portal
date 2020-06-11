@@ -12,12 +12,13 @@ export class LoginComponent implements OnInit {
 
 	hide = true;
 	loginform: FormGroup;
+	EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 	
 	constructor(private formBuilder: FormBuilder, private empService: EmployeeService, private router:Router) { }
 
 	ngOnInit() {
 		this.loginform = this.formBuilder.group({
-		  'email': [null, Validators.required],
+		  'email': [null, [Validators.required, Validators.pattern(this.EMAIL_REGEX)]],
 		  'password': [null, Validators.required]
 		});
 	}

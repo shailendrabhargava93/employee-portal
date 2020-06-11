@@ -22,11 +22,14 @@
 				<br>
 				<mat-form-field class="example-full-width" appearance="fill" style="width: 17em;">
 					<mat-label>Password</mat-label>
-					<input  matInput type="password" formControlName="password">
+					<input  matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+					<a mat-icon-button matSuffix (click)="hide = !hide">
+						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					</a>
 					<mat-error *ngIf="!registerform.controls['password'].valid && registerform.controls['password'].touched">
 						{{registerform.get('password').hasError('required') ? 'This field is required' : ''}}
 					</mat-error>
-				</mat-form-field>
+				</mat-form-field>	
 				<br>
 				<mat-form-field appearance="fill" color="primary">
 				<mat-label>Joining Date</mat-label>

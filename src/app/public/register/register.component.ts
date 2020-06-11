@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
 
 	registerform: FormGroup;
 	minDate: Date;
+	hide = true;
 	
 	constructor(private formBuilder: FormBuilder, private empService: EmployeeService, private router:Router) { 
 		const currentYear = new Date().getFullYear();
