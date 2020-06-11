@@ -25,11 +25,17 @@ export class EmployeeService {
 	
 	
 	getEmployeeList(){
-		this.employeeList = this.cloudStoreDB.collection('/employee-list');
+		this.employeeList = this.cloudStoreDB.collection('employee-list');
 		return this.employeeList;
 	}
 	
 	saveEmployee(data:any){
-		this.cloudStoreDB.collection('/employee-list').add(data);
+		this.cloudStoreDB.collection('employee-list').add(data);
+	}
+	
+	checkAvailability(email:any, password:any):Observable<any>{	
+		var data:any = this.cloudStoreDB.collection("employee-list", ref => 
+			ref.where('email', '==', email).where("password", "==", password)).valueChanges();
+		return data;
 	}
 }

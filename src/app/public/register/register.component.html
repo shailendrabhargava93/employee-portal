@@ -28,9 +28,9 @@
 					</mat-error>
 				</mat-form-field>
 				<br>
-				<mat-form-field appearance="fill">
+				<mat-form-field appearance="fill" color="primary">
 				<mat-label>Joining Date</mat-label>
-					<input matInput [matDatepicker]="picker" formControlName="doj">
+					<input matInput [matDatepicker]="picker" formControlName="doj" [min]="minDate" (dateInput)="dateChanged($event)" (dateChange)="dateChanged($event)">
 					<mat-error *ngIf="!registerform.controls['doj'].valid && registerform.controls['doj'].touched">
 						{{registerform.get('doj').hasError('required') ? 'This field is required' : ''}}
 					</mat-error>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from "@angular/router";
+import { MatDatepickerInputEvent} from '@angular/material/datepicker';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { EmployeeService, Employee } from '../../employee-data/employee.service';
 
@@ -11,7 +12,12 @@ import { EmployeeService, Employee } from '../../employee-data/employee.service'
 export class RegisterComponent implements OnInit {
 
 	registerform: FormGroup;
-	constructor(private formBuilder: FormBuilder, private empService: EmployeeService, private router:Router) { }
+	minDate: Date;
+	
+	constructor(private formBuilder: FormBuilder, private empService: EmployeeService, private router:Router) { 
+		const currentYear = new Date().getFullYear();
+		this.minDate = new Date(currentYear - 1, 0, 1);
+	}
 
 	ngOnInit() {
 		this.registerform = this.formBuilder.group({
@@ -22,15 +28,24 @@ export class RegisterComponent implements OnInit {
 		});
 	}
 	
+	dateChanged(event){
+		if(event.value != null)
+			this.registerform.controls['doj'].setValue(event.value);
+	}
+	
 	submit(){
 		console.log(this.registerform.value)
 		let data = this.registerform.value;
 		if(data.doj != null){
-			data.doj = data.doj.getUTCDate()+"-"+(data.doj.getUTCMonth()+1)+"-"+data.doj.getUTCFullYear();
+			data.doj = this.getReadableDate(data.doj);
 		}
 		this.empService.saveEmployee(data);
 		alert('Success');
 		this.router.navigate(['login']);
+	}
+	
+	getReadableDate(doj:any){
+		return doj.getDate()+"-"+(doj.getMonth()+1)+"-"+doj.getFullYear();
 	}
 
 }

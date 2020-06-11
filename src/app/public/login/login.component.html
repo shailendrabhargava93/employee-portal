@@ -1,15 +1,15 @@
-<form class="loginform">
+<form [formGroup]="loginform">
 <mat-card style="text-align: center;">
 	<mat-card-content>
 		<mat-form-field class="example-full-width" appearance="fill" style="width: 17em;">
-			<mat-label>User Name</mat-label>
-			<input matInput>
+			<mat-label>Email ID</mat-label>
+			<input matInput formControlName="email">
 			<span matSuffix></span>
 		</mat-form-field>
 		<br>
 		<mat-form-field class="example-full-width" appearance="fill">
 			<mat-label>Password</mat-label>
-			<input  matInput [type]="hide ? 'password' : 'text'">
+			<input  matInput [type]="hide ? 'password' : 'text'" formControlName="password">
 			<a mat-icon-button matSuffix (click)="hide = !hide">
 				<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 			</a>
@@ -17,11 +17,8 @@
 	</mat-card-content>
 	<mat-card-actions>
 		<a mat-raised-button (click)="register()">Register</a>
-		<a mat-raised-button color="primary">Login</a>
+		<a mat-raised-button color="primary" (click)="login()">Login</a>
 	</mat-card-actions>
-	<!--<a mat-raised-button (click)="goToList()">List</a>-->
-	<br>
-		
 	<!--<a mat-raised-button (click)="sendEmail()">Send mail</a>-->
 </mat-card>
 </form>
