@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
 			if(result.length > 0){
 				console.log(result[0]);
 				alert('login successfull !!')
+				this.router.navigate(['/employee/list']);
 			}else{
 				alert('Invalid email or password !!')
 				this.loginform.reset();

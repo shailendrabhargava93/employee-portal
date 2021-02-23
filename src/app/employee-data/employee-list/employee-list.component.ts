@@ -20,7 +20,8 @@ export class EmployeeListComponent implements OnInit {
 		this.empService.getEmployeeList().valueChanges().subscribe(data => {
 		  this.employeeList = [];
 		  data.forEach(item => {
-			this.employeeList.push(item);
+			  if(item.name != 'admin')
+				this.employeeList.push(item);
 		  })
 		})
 	}

@@ -31,6 +31,20 @@
 					</mat-error>
 				</mat-form-field>	
 				<br>
+				<mat-form-field class="example-full-width" appearance="fill" style="width: 17em;">
+					<mat-label>Department</mat-label>
+					<mat-select  formControlName="department">
+						<mat-option value="HR">HR</mat-option>
+						<mat-option value="QA">QA</mat-option>
+						<mat-option value="Engineering">Engineering</mat-option>
+						<mat-option value="Accounts">Accounts</mat-option>
+						<mat-option value="Admin">Admin</mat-option>
+					</mat-select>
+					<mat-error *ngIf="!registerform.controls['department'].valid && registerform.controls['department'].touched">
+						{{registerform.get('department').hasError('required') ? 'This field is required' : ''}}
+					</mat-error>
+				</mat-form-field>
+				<br>
 				<mat-form-field appearance="fill" color="primary">
 				<mat-label>Joining Date</mat-label>
 					<input matInput [matDatepicker]="picker" formControlName="doj" [min]="minDate" (dateInput)="dateChanged($event)" (dateChange)="dateChanged($event)">

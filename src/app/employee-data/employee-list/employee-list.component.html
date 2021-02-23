@@ -1,7 +1,22 @@
-<mat-card *ngFor="let item of employeeList;">
-	<mat-icon>user</mat-icon>
+<div *ngIf="employeeList.length  == 0">
+	No Employee Found.
+</div>
+<div *ngIf="employeeList.length  > 0">
+<mat-card *ngFor="let item of employeeList;let index = index">
+	<button mat-mini-fab>
+         {{index+1}}
+	</button>
 	<mat-label>{{item.name}}</mat-label><br>
 	<mat-label>{{item.email}}</mat-label><br>
 	<mat-label>{{item.department}}</mat-label><br>
 	<mat-label>{{item.doj}}</mat-label>
+	<div style="pull-right"> 
+		<button mat-mini-fab>
+          <mat-icon>delete</mat-icon>
+		</button>
+		<button mat-mini-fab>
+			  <mat-icon>edit</mat-icon>
+		</button>
+	</div>
 </mat-card> 
+</div>
